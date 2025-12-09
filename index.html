@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sardar Arstanbekov | Product Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0a0a0a;
@@ -36,6 +39,7 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
+            font-weight: 400;
         }
 
         .container {
@@ -53,35 +57,12 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
+            overflow: hidden;
         }
 
         .bg-element {
             position: absolute;
             border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .bg-1 {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 5%;
-            transform: rotate(45deg);
-        }
-
-        .bg-2 {
-            width: 200px;
-            height: 200px;
-            bottom: 20%;
-            right: 10%;
-            transform: rotate(30deg);
-        }
-
-        .bg-3 {
-            width: 150px;
-            height: 150px;
-            top: 50%;
-            left: 15%;
-            transform: rotate(60deg);
         }
 
         /* Header */
@@ -92,8 +73,9 @@
             width: 100%;
             z-index: 1000;
             padding: var(--spacing-md) 0;
-            background-color: rgba(10, 10, 10, 0.9);
+            background-color: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .header-container {
@@ -154,12 +136,24 @@
             width: 100%;
         }
 
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             padding-top: 100px;
+            position: relative;
         }
 
         .hero-content {
@@ -170,9 +164,9 @@
         }
 
         .hero-text h1 {
-            font-size: 4.5rem;
+            font-size: 4rem;
             font-weight: 700;
-            line-height: 1;
+            line-height: 1.1;
             margin-bottom: var(--spacing-md);
             letter-spacing: -2px;
         }
@@ -180,13 +174,33 @@
         .hero-text h1 span {
             color: var(--accent-color);
             position: relative;
+            display: inline-block;
+        }
+
+        .hero-text h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-text h1 span:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .hero-text p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--gray-color);
             margin-bottom: var(--spacing-lg);
             max-width: 500px;
+            font-weight: 300;
         }
 
         .cta-button {
@@ -195,20 +209,22 @@
             gap: var(--spacing-sm);
             background-color: var(--accent-color);
             color: var(--text-color);
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             text-decoration: none;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             border-radius: 0;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            border: 1px solid var(--accent-color);
         }
 
         .cta-button:hover {
-            background-color: #ff3333;
+            background-color: transparent;
+            color: var(--accent-color);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.2);
+            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.2);
         }
 
         .hero-visual {
@@ -220,12 +236,18 @@
         }
 
         .visual-element {
-            width: 300px;
-            height: 300px;
+            width: 320px;
+            height: 320px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transform: rotate(45deg);
             position: relative;
             overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .visual-element:hover {
+            transform: rotate(60deg);
+            border-color: var(--accent-color);
         }
 
         .visual-element::before {
@@ -234,8 +256,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) rotate(-45deg);
-            width: 200px;
-            height: 200px;
+            width: 240px;
+            height: 240px;
             background: linear-gradient(45deg, rgba(255, 77, 77, 0.1), rgba(255, 77, 77, 0.05));
         }
 
@@ -247,9 +269,10 @@
         .section-title {
             font-size: 3rem;
             font-weight: 700;
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
             position: relative;
             display: inline-block;
+            letter-spacing: -1px;
         }
 
         .section-title::after {
@@ -267,6 +290,8 @@
             color: var(--gray-color);
             margin-bottom: var(--spacing-xl);
             max-width: 600px;
+            font-weight: 300;
+            line-height: 1.8;
         }
 
         /* About Section */
@@ -280,6 +305,8 @@
             margin-bottom: var(--spacing-md);
             color: var(--gray-color);
             font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.8;
         }
 
         .info-grid {
@@ -289,18 +316,31 @@
             margin-top: var(--spacing-lg);
         }
 
+        .info-item {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: var(--spacing-md);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            border-color: rgba(255, 77, 77, 0.2);
+            transform: translateY(-2px);
+        }
+
         .info-item h4 {
             color: var(--accent-color);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .info-item p {
             font-size: 1rem;
             color: var(--text-color);
             margin: 0;
+            font-weight: 400;
         }
 
         /* Projects Section */
@@ -311,11 +351,13 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            background: rgba(20, 20, 20, 0.5);
         }
 
         .project-card:hover {
             border-color: var(--accent-color);
             transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .project-card::before {
@@ -328,6 +370,7 @@
             background: linear-gradient(45deg, rgba(255, 77, 77, 0.05), transparent);
             opacity: 0;
             transition: opacity 0.3s ease;
+            pointer-events: none;
         }
 
         .project-card:hover::before {
@@ -339,19 +382,23 @@
             color: var(--accent-color);
             margin-bottom: var(--spacing-sm);
             display: block;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-weight: 600;
         }
 
         .project-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: var(--spacing-sm);
+            letter-spacing: -0.5px;
         }
 
         .project-description {
             color: var(--gray-color);
             margin-bottom: var(--spacing-md);
             font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.8;
         }
 
         .project-tags {
@@ -362,16 +409,19 @@
         }
 
         .tag {
-            background-color: var(--secondary-color);
-            color: var(--gray-color);
-            padding: 0.3rem 0.8rem;
+            background-color: rgba(255, 77, 77, 0.1);
+            color: var(--accent-color);
+            padding: 0.4rem 1rem;
             font-size: 0.8rem;
             letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 77, 77, 0.2);
+            font-weight: 500;
         }
 
         .project-links {
             display: flex;
             gap: var(--spacing-md);
+            flex-wrap: wrap;
         }
 
         .project-link {
@@ -379,15 +429,19 @@
             text-decoration: none;
             font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
             transition: all 0.3s ease;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid transparent;
         }
 
         .project-link:hover {
             color: var(--text-color);
+            border-bottom-color: var(--accent-color);
         }
 
         /* Contact Section */
@@ -405,31 +459,41 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            background: rgba(20, 20, 20, 0.5);
         }
 
         .contact-item:hover {
             border-color: var(--accent-color);
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .contact-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--accent-color);
             margin-bottom: var(--spacing-sm);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            transform: scale(1.1);
         }
 
         .contact-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
             color: var(--gray-color);
+            font-weight: 600;
         }
 
         .contact-value {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-color);
             transition: color 0.3s ease;
+            font-weight: 400;
+            word-break: break-word;
         }
 
         .contact-link {
@@ -442,11 +506,6 @@
             color: var(--accent-color);
         }
 
-        .placeholder {
-            font-style: italic;
-            color: var(--gray-color);
-        }
-
         /* Footer */
         footer {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -454,6 +513,14 @@
             text-align: center;
             color: var(--gray-color);
             font-size: 0.9rem;
+            background: rgba(10, 10, 10, 0.9);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-sm);
         }
 
         /* Responsive */
@@ -465,17 +532,42 @@
             }
             
             .hero-text h1 {
-                font-size: 3.5rem;
+                font-size: 3.2rem;
             }
             
             .contact-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .visual-element {
+                width: 280px;
+                height: 280px;
+                margin: 0 auto;
             }
         }
 
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--bg-color);
+                align-items: center;
+                justify-content: center;
+                gap: var(--spacing-lg);
+                z-index: 1000;
             }
             
             .hero-text h1 {
@@ -498,6 +590,28 @@
                 width: 250px;
                 height: 250px;
             }
+            
+            .hero {
+                padding-top: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .project-title {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
         }
 
         /* Animation */
@@ -513,23 +627,46 @@
         }
 
         .fade-in {
+            opacity: 0;
             animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff3333;
         }
     </style>
 </head>
 <body>
     <!-- Geometric Background Elements -->
-    <div class="bg-elements">
-        <div class="bg-element bg-1"></div>
-        <div class="bg-element bg-2"></div>
-        <div class="bg-element bg-3"></div>
-    </div>
+    <div class="bg-elements" id="bgElements"></div>
 
     <!-- Header -->
     <header>
         <div class="container header-container">
             <a href="#" class="logo">SARDAR<span>.</span></a>
-            <nav class="nav-links">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
                 <a href="#home" class="active">Home</a>
                 <a href="#about">About</a>
                 <a href="#projects">Projects</a>
@@ -542,16 +679,16 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text fade-in">
-                    <h1>PRODUCT<br>MANAGER<span>.</span></h1>
-                    <p>IT student with a vision for creating impactful digital experiences. Currently shaping the future of road discovery with HAppy Road.</p>
-                    <a href="#projects" class="cta-button">
-                        <span>View Projects</span>
+                <div class="hero-text">
+                    <h1 class="fade-in">PRODUCT<br>MANAGER<span>.</span></h1>
+                    <p class="fade-in delay-1">IT student with a vision for creating impactful digital experiences. Currently shaping the future of road discovery with HAppy Road — mapping the world's most beautiful journeys.</p>
+                    <a href="#projects" class="cta-button fade-in delay-2">
+                        <span>Explore Projects</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                <div class="hero-visual fade-in">
-                    <div class="visual-element"></div>
+                <div class="hero-visual">
+                    <div class="visual-element fade-in delay-3"></div>
                 </div>
             </div>
         </div>
@@ -561,31 +698,31 @@
     <section id="about">
         <div class="container">
             <h2 class="section-title fade-in">ABOUT</h2>
-            <p class="section-subtitle fade-in">IT student focused on product strategy, user experience, and bringing ideas to life through technology.</p>
+            <p class="section-subtitle fade-in delay-1">IT student focused on product strategy, user experience, and bringing visionary ideas to life through technology.</p>
             
             <div class="about-content">
-                <div class="about-text fade-in">
-                    <p>My name is <strong>Sardar Arstanbekov</strong>, and I'm pursuing my studies in the IT department with a clear goal: to become a Product Manager who bridges the gap between technical possibilities and user needs.</p>
-                    <p>I believe great products are born at the intersection of technology, design, and business strategy. My approach combines analytical thinking with creative problem-solving to deliver solutions that users love.</p>
-                    <p>Currently, I'm channeling this passion into HAppy Road — a platform that reimagines how we discover and experience beautiful roads around the world.</p>
+                <div class="about-text fade-in delay-2">
+                    <p>My name is <strong>Sardar Arstanbekov</strong>, currently advancing my studies in the IT department with a determined focus on becoming a Product Manager who bridges the gap between technical innovation and user-centric design.</p>
+                    <p>I believe exceptional products emerge at the intersection of technology, design, and strategic thinking. My methodology combines analytical rigor with creative problem-solving to deliver solutions that users genuinely love.</p>
+                    <p>My current passion project, HAppy Road, embodies this philosophy — reimagining how we discover, experience, and share the world's most beautiful roads and scenic routes.</p>
                 </div>
-                <div class="about-text fade-in">
+                <div class="about-text fade-in delay-3">
                     <div class="info-grid">
                         <div class="info-item">
-                            <h4>FOCUS</h4>
+                            <h4>PRIMARY FOCUS</h4>
                             <p>Product Management</p>
                         </div>
                         <div class="info-item">
-                            <h4>EDUCATION</h4>
-                            <p>IT Department</p>
+                            <h4>CURRENT ROLE</h4>
+                            <p>IT Student</p>
                         </div>
                         <div class="info-item">
-                            <h4>STATUS</h4>
-                            <p>Student</p>
+                            <h4>SPECIALIZATION</h4>
+                            <p>UX Strategy & Product Development</p>
                         </div>
                         <div class="info-item">
-                            <h4>LOCATION</h4>
-                            <p>Available Worldwide</p>
+                            <h4>PHILOSOPHY</h4>
+                            <p>Technology Serving Human Experience</p>
                         </div>
                     </div>
                 </div>
@@ -597,29 +734,48 @@
     <section id="projects">
         <div class="container">
             <h2 class="section-title fade-in">PROJECTS</h2>
-            <p class="section-subtitle fade-in">Selected works that demonstrate my approach to product development and problem-solving.</p>
+            <p class="section-subtitle fade-in delay-1">Selected works that demonstrate my approach to product development and strategic thinking.</p>
             
-            <div class="project-card fade-in">
-                <span class="project-number">01</span>
-                <h3 class="project-title">HAPPY ROAD</h3>
-                <p class="project-description">A specialized mapping platform for discovering and sharing the world's most beautiful and interesting roads. HAppy Road transforms ordinary journeys into extraordinary experiences by highlighting scenic routes, hidden gems, and memorable driving roads.</p>
+            <div class="project-card fade-in delay-2">
+                <span class="project-number">01 / HAPPY ROAD</span>
+                <h3 class="project-title">REDEFINING ROAD DISCOVERY</h3>
+                <p class="project-description">A specialized mapping platform that transforms how travelers discover and experience the world's most beautiful roads. HAppy Road combines curated routes, user-generated content, and intelligent algorithms to create a community-driven platform for road enthusiasts, adventure seekers, and scenic route lovers.</p>
                 
                 <div class="project-tags">
                     <span class="tag">Product Strategy</span>
-                    <span class="tag">UX Design</span>
+                    <span class="tag">UX/UI Design</span>
                     <span class="tag">Mapping Technology</span>
                     <span class="tag">Community Platform</span>
+                    <span class="tag">User Research</span>
+                    <span class="tag">Road Discovery</span>
                 </div>
                 
                 <div class="project-links">
-                    <a href="#" class="project-link">
+                    <a href="https://www.figma.com/design/NqP6S2ZdpLIQRRPzG7BCmK/HappyRoad-%D1%84%D0%B0%D0%B9%D0%BD%D0%B0%D0%BB?node-id=0-1&t=pJZ92r7vigijF749-1" 
+                       target="_blank" 
+                       class="project-link">
                         <i class="fab fa-figma"></i>
-                        <span>Figma Design</span>
+                        <span>View Figma Design</span>
                     </a>
-                    <a href="#" class="project-link">
+                    <a href="https://github.com/Sardar-1009/B2B_Final.git" 
+                       target="_blank" 
+                       class="project-link">
                         <i class="fab fa-github"></i>
-                        <span>GitHub</span>
+                        <span>GitHub Repository</span>
                     </a>
+                </div>
+            </div>
+            
+            <div class="project-card fade-in delay-3">
+                <span class="project-number">02 / PRODUCT PORTFOLIO</span>
+                <h3 class="project-title">DIGITAL PRESENCE & STRATEGY</h3>
+                <p class="project-description">This portfolio represents my approach to personal branding and digital presence as an aspiring Product Manager. Designed with a focus on clarity, impact, and professional presentation, it showcases my methodology, projects, and vision for product development.</p>
+                
+                <div class="project-tags">
+                    <span class="tag">Personal Branding</span>
+                    <span class="tag">Web Design</span>
+                    <span class="tag">Portfolio Strategy</span>
+                    <span class="tag">Digital Presence</span>
                 </div>
             </div>
         </div>
@@ -628,41 +784,51 @@
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
-            <h2 class="section-title fade-in">CONTACT</h2>
-            <p class="section-subtitle fade-in">Connect with me through these channels. Links will be updated shortly.</p>
+            <h2 class="section-title fade-in">CONNECT</h2>
+            <p class="section-subtitle fade-in delay-1">Let's discuss product strategy, opportunities, or potential collaborations.</p>
             
             <div class="contact-grid">
-                <div class="contact-item fade-in">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
+                <a href="mailto:sardar.a@compasscollege.art" class="contact-link fade-in delay-1">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">sardar.a@compasscollege.art</div>
                     </div>
-                    <div class="contact-label">GitHub</div>
-                    <div class="contact-value placeholder">Link coming soon</div>
-                </div>
+                </a>
                 
-                <div class="contact-item fade-in">
-                    <div class="contact-icon">
-                        <i class="fab fa-telegram"></i>
+                <a href="https://t.me/SprSchp" target="_blank" class="contact-link fade-in delay-2">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="contact-label">Telegram</div>
+                        <div class="contact-value">@SprSchp</div>
                     </div>
-                    <div class="contact-label">Telegram</div>
-                    <div class="contact-value placeholder">Link coming soon</div>
-                </div>
+                </a>
                 
-                <div class="contact-item fade-in">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
+                <a href="https://github.com/Sardar-1009/B2B_Final.git" target="_blank" class="contact-link fade-in delay-3">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-label">GitHub</div>
+                        <div class="contact-value">HAppy Road Project</div>
                     </div>
-                    <div class="contact-label">Email</div>
-                    <div class="contact-value placeholder">Link coming soon</div>
-                </div>
+                </a>
                 
-                <div class="contact-item fade-in">
-                    <div class="contact-icon">
-                        <i class="fab fa-figma"></i>
+                <a href="https://www.figma.com/design/NqP6S2ZdpLIQRRPzG7BCmK/HappyRoad-%D1%84%D0%B0%D0%B9%D0%BD%D0%B0%D0%BB?node-id=0-1&t=pJZ92r7vigijF749-1" 
+                   target="_blank" 
+                   class="contact-link fade-in delay-4">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-figma"></i>
+                        </div>
+                        <div class="contact-label">Figma Design</div>
+                        <div class="contact-value">HAppy Road Prototype</div>
                     </div>
-                    <div class="contact-label">Figma</div>
-                    <div class="contact-value placeholder">Link coming soon</div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -670,12 +836,34 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>SARDAR ARSTANBEKOV © 2023</p>
-            <p style="margin-top: 10px; font-size: 0.8rem; color: #555;">Product-focused IT Student</p>
+            <div class="footer-content">
+                <div class="logo">SARDAR<span>.</span></div>
+                <p>Aspiring Product Manager | IT Student | Road Discovery Innovator</p>
+                <p style="margin-top: 20px; font-size: 0.8rem; color: #555;">© <span id="currentYear"></span> Sardar Arstanbekov. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -699,7 +887,7 @@
                 }
             });
         });
-        
+
         // Update active nav link on scroll
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section');
@@ -709,7 +897,7 @@
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if(pageYOffset >= sectionTop - 150) {
+                if(window.scrollY >= sectionTop - 150) {
                     current = section.getAttribute('id');
                 }
             });
@@ -721,61 +909,105 @@
                 }
             });
         });
-        
-        // Fade in elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-        
-        // Observe elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Generate random geometric elements
+
+        // Create geometric background elements
         function createGeometricElements() {
-            const bgElements = document.querySelector('.bg-elements');
-            const colors = ['rgba(255, 77, 77, 0.03)', 'rgba(255, 255, 255, 0.02)', 'rgba(255, 255, 255, 0.01)'];
+            const bgElements = document.getElementById('bgElements');
+            const colors = [
+                'rgba(255, 77, 77, 0.03)',
+                'rgba(255, 255, 255, 0.02)',
+                'rgba(255, 255, 255, 0.01)',
+                'rgba(255, 77, 77, 0.02)',
+                'rgba(255, 77, 77, 0.015)'
+            ];
             
-            for(let i = 0; i < 8; i++) {
+            // Clear existing elements
+            bgElements.innerHTML = '';
+            
+            // Create 12 geometric elements
+            for(let i = 0; i < 12; i++) {
                 const element = document.createElement('div');
                 element.className = 'bg-element';
                 
-                const size = Math.random() * 150 + 50;
+                // Random properties
+                const size = Math.random() * 200 + 50;
                 const posX = Math.random() * 100;
                 const posY = Math.random() * 100;
                 const rotation = Math.random() * 360;
                 const color = colors[Math.floor(Math.random() * colors.length)];
+                const borderRadius = Math.random() > 0.7 ? '50%' : '0';
+                const animationDelay = Math.random() * 5;
                 
+                // Apply styles
                 element.style.width = `${size}px`;
                 element.style.height = `${size}px`;
                 element.style.top = `${posY}%`;
                 element.style.left = `${posX}%`;
                 element.style.transform = `rotate(${rotation}deg)`;
                 element.style.borderColor = color;
+                element.style.borderRadius = borderRadius;
+                element.style.opacity = '0';
+                element.style.transition = `opacity 1s ease ${animationDelay}s`;
                 
+                // Add to DOM
                 bgElements.appendChild(element);
+                
+                // Fade in after a delay
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                }, 100);
             }
         }
-        
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            // Create background elements
             createGeometricElements();
             
-            // Update copyright year
-            const yearElement = document.querySelector('footer p');
-            if(yearElement) {
-                yearElement.innerHTML = yearElement.innerHTML.replace('2023', new Date().getFullYear());
-            }
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+            
+            // Animate geometric elements on scroll
+            window.addEventListener('scroll', () => {
+                const elements = document.querySelectorAll('.bg-element');
+                const scrollY = window.scrollY;
+                
+                elements.forEach((element, index) => {
+                    const speed = 0.5 + (index % 3) * 0.2;
+                    const yPos = scrollY * speed * 0.05;
+                    const rotation = scrollY * 0.02;
+                    
+                    element.style.transform = `translateY(${yPos}px) rotate(${45 + rotation}deg)`;
+                });
+            });
+        });
+
+        // Regenerate geometric elements on window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(createGeometricElements, 250);
         });
     </script>
 </body>
